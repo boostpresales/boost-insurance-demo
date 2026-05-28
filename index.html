@@ -584,7 +584,7 @@ room = new LK.Room();
         status.innerText = "Connected. You can speak now.";
       } catch (error) {
         console.error(error);
-        status.innerText = "Voice connection failed. Check endpoint, entrypoint or CORS.";
+        status.innerText = "Error: " + error.message";
       }
     }
 
