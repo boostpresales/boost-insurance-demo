@@ -1,35 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boost Insurance</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #dcdcdc;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background: #ffffff;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 92px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #005f46, #008b68);
+      color: white;
+      padding: 28px 24px 120px;
+      border-bottom-left-radius: 34px;
+      border-bottom-right-radius: 34px;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .shield {
+      width: 46px;
+      height: 52px;
+      border: 4px solid white;
+      border-radius: 16px 16px 22px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 6px;
+      margin-top: 5px;
+    }
+
+    .profile {
+      width: 42px;
+      height: 42px;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .welcome {
+      margin-top: 32px;
+      font-size: 20px;
+      opacity: 0.9;
+    }
+
+    .name {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .policy-card {
+      background: white;
+      color: black;
+      margin: -86px 18px 22px;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+    }
+
+    .policy-label {
+      color: #007a5a;
+      font-weight: bold;
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .car-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .car-title {
+      font-size: 31px;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .car-badge {
+      background: #e8f4f0;
+      color: #007a5a;
+      display: inline-block;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .car-emoji {
+      font-size: 76px;
+      line-height: 1;
+    }
+
+    .policy-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed #d9d9d9;
+    }
+
+    .meta-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .meta-icon {
+      color: #007a5a;
+      font-size: 22px;
+      margin-top: 2px;
+    }
+
+    .meta-label {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .meta-value {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px dashed #d9d9d9;
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8f4f0;
+      color: #007a5a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .stat-label {
+      color: #555;
+      font-size: 13px;
+      min-height: 34px;
+    }
+
+    .stat-value {
+      font-size: 21px;
+      font-weight: 900;
+      margin-top: 6px;
+    }
+
+    .stat-note {
+      color: #007a5a;
+      font-size: 12px;
+      margin-top: 6px;
+      line-height: 1.25;
+    }
+
+    .content {
+      padding: 0 18px;
+    }
+
+    .action {
+      width: 100%;
+      border: none;
+      border-radius: 24px;
+      padding: 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .action-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .action-title {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .action-sub {
+      font-size: 14px;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    .arrow {
+      margin-left: auto;
+      font-size: 28px;
+      opacity: 0.8;
+    }
+
+    .voice {
+      background: linear-gradient(135deg, #006a4e, #008b68);
+      color: white;
+      box-shadow: 0 12px 25px rgba(0,122,90,0.22);
+    }
+
+    .voice .action-icon {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .chat {
+      background: #f3f3f3;
+      color: black;
+    }
+
+    .chat .action-icon {
+      background: white;
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .tile {
+      background: #f3f3f3;
+      padding: 20px;
+      border-radius: 24px;
+      min-height: 160px;
+    }
+
+    .tile-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #e8f4f0;
+      color: #007a5a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .tile-title {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .tile-text {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 100%;
+      max-width: 430px;
+      border-top: 1px solid #e5e5e5;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0 20px;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .nav-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .active {
+      color: #007a5a;
+      font-weight: bold;
+    }
+
+    .call-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      z-index: 50;
+    }
+
+    .call-box {
+      width: 100%;
+      max-width: 360px;
+      background: white;
+      border-radius: 30px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .call-icon {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #e8f4f0;
+      color: #007a5a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+    }
+
+    .call-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .call-status {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .end-call {
+      width: 100%;
+      border: none;
+      border-radius: 22px;
+      padding: 16px;
+      background: #d92d20;
+      color: white;
+      font-weight: bold;
+      font-size: 17px;
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="app">
+
+<section class="hero">
+  <div class="top-row">
+    <div class="logo-wrap">
+      <div class="shield">B</div>
+      <div class="brand">BOOST<span>INSURANCE</span></div>
+    </div>
+    <div class="profile">👤</div>
+  </div>
+
+  <div class="welcome">Welcome back,</div>
+  <div class="name">Adam Rathbone</div>
+</section>
+
+<section class="policy-card">
+  <div class="policy-label">Your Policy</div>
+
+  <div class="car-row">
+    <div>
+      <h1 class="car-title">Ford Fiesta ST</h1>
+      <div class="car-badge">Comprehensive</div>
+    </div>
+    <div class="car-emoji">🚗</div>
+  </div>
+
+  <div class="policy-meta">
+    <div class="meta-item">
+      <div class="meta-icon">📅</div>
+      <div>
+        <div class="meta-label">Policy Expiry</div>
+        <div class="meta-value">26 May 2026</div>
+      </div>
+    </div>
+
+    <div class="meta-item">
+      <div class="meta-icon">🛡️</div>
+      <div>
+        <div class="meta-label">Policy Number</div>
+        <div class="meta-value">ACR-102938</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-icon">£</div>
+      <div class="stat-label">Annual Premium</div>
+      <div class="stat-value">£672.48</div>
+      <div class="stat-note">View breakdown</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">💳</div>
+      <div class="stat-label">Excess</div>
+      <div class="stat-value">£250</div>
+      <div class="stat-note">Voluntary £100</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">📄</div>
+      <div class="stat-label">No Claims Bonus</div>
+      <div class="stat-value">3 Years</div>
+      <div class="stat-note">Protected</div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <button class="action voice" onclick="startVoiceCall()">
+    <div class="action-icon">🎙️</div>
+    <div>
+      <div class="action-title">Speak with AI Agent</div>
+      <div class="action-sub">Get quick answers using voice</div>
+    </div>
+    <div class="arrow">›</div>
+  </button>
+
+  <button class="action chat">
+    <div class="action-icon">💬</div>
+    <div>
+      <div class="action-title">Chat with AI Agent</div>
+      <div class="action-sub">Type your questions</div>
+    </div>
+    <div class="arrow">›</div>
+  </button>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="tile-icon">📝</div>
+      <div class="tile-title">Make a Claim</div>
+      <div class="tile-text">Start a new motor insurance claim</div>
+    </div>
+
+    <div class="tile">
+      <div class="tile-icon">📁</div>
+      <div class="tile-title">View Documents</div>
+      <div class="tile-text">Access policy documents and renewal info</div>
+    </div>
+  </div>
+</section>
+
+<nav class="bottom-nav">
+  <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
+  <div class="nav-item"><div class="nav-icon">🛡️</div>Policies</div>
+  <div class="nav-item"><div class="nav-icon">📄</div>Claims</div>
+  <div class="nav-item"><div class="nav-icon">⚙️</div>Settings</div>
+</nav>
+
+</main>
+
+<div class="call-modal" id="callModal">
+  <div class="call-box">
+    <div class="call-icon">🎙️</div>
+    <div class="call-title">AI Voice Agent</div>
+    <div class="call-status" id="callStatus">Connecting...</div>
+    <button class="end-call" onclick="endVoiceCall()">End Call</button>
+  </div>
+</div>
+
 <script>
-
-const BOOST_VOICE_ENDPOINT =
-"https://adminpanel-adamtest.boost.ai/api/voice/v1/call";
-
+const BOOST_VOICE_ENDPOINT = "https://adminpanel-adamtest.boost.ai/api/voice/v1/call";
 let room = null;
 
 async function startVoiceCall() {
-
   const modal = document.getElementById("callModal");
   const status = document.getElementById("callStatus");
 
   modal.style.display = "flex";
+  status.innerText = "Starting voice session...";
 
   try {
-
-    status.innerText = "Starting voice session...";
-
-    const response = await fetch(
-      BOOST_VOICE_ENDPOINT,
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          entrypoint_id: 2
-        })
-      }
-    );
+    const response = await fetch(BOOST_VOICE_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        entrypoint_id: 2
+      })
+    });
 
     if (!response.ok) {
       throw new Error("Voice API returned " + response.status);
@@ -37,55 +560,44 @@ async function startVoiceCall() {
 
     const data = await response.json();
 
-    console.log(data);
+    console.log("Boost voice response:", data);
 
     const livekitUrl = data.url;
     const accessToken = data.access_token;
 
     if (!livekitUrl || !accessToken) {
-      throw new Error("Missing LiveKit credentials");
+      throw new Error("Missing LiveKit URL or access token");
     }
 
     status.innerText = "Connecting to AI agent...";
 
     room = new LivekitClient.Room();
 
-    await room.connect(
-      livekitUrl,
-      accessToken
-    );
+    await room.connect(livekitUrl, accessToken);
 
     await room.localParticipant.setMicrophoneEnabled(true);
 
     status.innerText = "Connected. You can speak now.";
 
-    room.on(
-      LivekitClient.RoomEvent.Disconnected,
-      () => {
-        modal.style.display = "none";
-      }
-    );
+    room.on(LivekitClient.RoomEvent.Disconnected, () => {
+      modal.style.display = "none";
+    });
 
   } catch (error) {
-
-    console.error(error);
-
-    status.innerText =
-      "Voice connection failed. Check console logs.";
-
+    console.error("Voice call error:", error);
+    status.innerText = "Voice connection failed. Check endpoint, entrypoint, CORS, or console logs.";
   }
-
 }
 
 function endVoiceCall() {
-
   if (room) {
     room.disconnect();
     room = null;
   }
 
   document.getElementById("callModal").style.display = "none";
-
 }
-
 </script>
+
+</body>
+</html>
