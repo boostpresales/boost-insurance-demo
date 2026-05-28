@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,6 +81,29 @@
       background: #f1f1f1;
     }
 
+    .tiles {
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .tile {
+      background: #f1f1f1;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .tile-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .tile-text {
+      color: #666;
+      font-size: 14px;
+    }
+
     .bottom-nav {
       position: absolute;
       bottom: 0;
@@ -129,6 +153,24 @@
         💬 Chat with AI Agent
       </button>
 
+      <div class="tiles">
+
+        <div class="tile">
+          <div class="tile-title">Make a Claim</div>
+          <div class="tile-text">
+            Start a new motor insurance claim
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="tile-title">View Documents</div>
+          <div class="tile-text">
+            Access policy documents and renewal info
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
     <div class="bottom-nav">
@@ -142,3 +184,4 @@
 
 </body>
 </html>
+```
