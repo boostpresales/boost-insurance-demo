@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boost Insurance</title>
 
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+
   <style>
     * { box-sizing: border-box; }
 
@@ -183,10 +185,6 @@
       border-top: 1px dashed #d9d9d9;
     }
 
-    .stat {
-      min-width: 0;
-    }
-
     .stat-icon {
       width: 44px;
       height: 44px;
@@ -353,11 +351,68 @@
       font-weight: bold;
     }
 
+    .call-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      z-index: 50;
+    }
+
+    .call-box {
+      width: 100%;
+      max-width: 360px;
+      background: white;
+      border-radius: 30px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .call-icon {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #e8f4f0;
+      color: #007a5a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+    }
+
+    .call-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .call-status {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .end-call {
+      width: 100%;
+      border: none;
+      border-radius: 22px;
+      padding: 16px;
+      background: #d92d20;
+      color: white;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
     @media (max-width: 380px) {
       .name { font-size: 40px; }
       .brand { font-size: 23px; }
       .car-title { font-size: 26px; }
-      .stats { gap: 8px; }
       .stat-value { font-size: 18px; }
     }
   </style>
@@ -370,12 +425,8 @@
       <div class="top-row">
         <div class="logo-wrap">
           <div class="shield">B</div>
-          <div class="brand">
-            BOOST
-            <span>INSURANCE</span>
-          </div>
+          <div class="brand">BOOST<span>INSURANCE</span></div>
         </div>
-
         <div class="profile">👤</div>
       </div>
 
@@ -391,7 +442,6 @@
           <h1 class="car-title">Ford Fiesta ST</h1>
           <div class="car-badge">Comprehensive</div>
         </div>
-
         <div class="car-emoji">🚗</div>
       </div>
 
@@ -438,7 +488,7 @@
     </section>
 
     <section class="content">
-      <button class="action voice">
+      <button class="action voice" onclick="startVoiceCall()">
         <div class="action-icon">🎙️</div>
         <div>
           <div class="action-title">Speak with AI Agent</div>
@@ -472,24 +522,94 @@
     </section>
 
     <nav class="bottom-nav">
-      <div class="nav-item active">
-        <div class="nav-icon">🏠</div>
-        Home
-      </div>
-      <div class="nav-item">
-        <div class="nav-icon">🛡️</div>
-        Policies
-      </div>
-      <div class="nav-item">
-        <div class="nav-icon">📄</div>
-        Claims
-      </div>
-      <div class="nav-item">
-        <div class="nav-icon">⚙️</div>
-        Settings
-      </div>
+      <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
+      <div class="nav-item"><div class="nav-icon">🛡️</div>Policies</div>
+      <div class="nav-item"><div class="nav-icon">📄</div>Claims</div>
+      <div class="nav-item"><div class="nav-icon">⚙️</div>Settings</div>
     </nav>
 
   </main>
+
+  <div class="call-modal" id="callModal">
+    <div class="call-box">
+      <div class="call-icon">🎙️</div>
+      <div class="call-title">AI Voice Agent</div>
+      <div class="call-status" id="callStatus">Connecting...</div>
+      <button class="end-call" onclick="endVoiceCall()">End Call</button>
+    </div>
+  </div>
+
+  <script>
+    const BOOST_VOICE_ENDPOINT = "https://adminpanel-adamtest.boost.ai/api/voice/v1/call";
+    const ENTRYPOINT_ID = "2";
+
+    let room = null;
+
+    async function startVoiceCall() {
+      const modal = document.getElementById("callModal");
+      const status = document.getElementById("callStatus");
+
+      modal.style.display = "flex";
+      status.innerText = "Requesting microphone access...";
+
+      try {
+        const response = await fetch(BOOST_VOICE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            entrypoint_id: ENTRYPOINT_ID
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("Voice API returned " + response.status);
+        }
+
+        const data = await response.json();
+
+        const livekitUrl = data.url;
+        const accessToken = data.access_token;
+
+        if (!livekitUrl || !accessToken) {
+          throw new Error("Missing LiveKit URL or access token");
+        }
+
+        status.innerText = "Connecting to voice agent...";
+
+        room = new LivekitClient.Room();
+
+        await room.connect(livekitUrl, accessToken);
+
+        await room.localParticipant.setMicrophoneEnabled(true);
+
+        status.innerText = "Connected. You can speak now.";
+
+        room.on(LivekitClient.RoomEvent.Disconnected, () => {
+          status.innerText = "Call ended.";
+          modal.style.display = "none";
+        });
+
+      } catch (error) {
+        console.error(error);
+        status.innerText = "Could not start voice call. Check the endpoint, entrypoint, or CORS settings.";
+      }
+    }
+
+    async function endVoiceCall() {
+      const modal = document.getElementById("callModal");
+      const status = document.getElementById("callStatus");
+
+      if (room) {
+        room.disconnect();
+        room = null;
+      }
+
+      status.innerText = "Call ended.";
+      modal.style.display = "none";
+    }
+  </script>
+
 </body>
 </html>
