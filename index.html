@@ -6,9 +6,7 @@
   <title>Boost Insurance</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -16,124 +14,338 @@
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      padding: 16px;
     }
 
-    .phone {
-      width: 390px;
-      max-width: 100%;
-      min-height: 820px;
-      background: white;
-      border-radius: 36px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    .app {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background: #ffffff;
+      overflow-x: hidden;
       position: relative;
+      padding-bottom: 92px;
     }
 
-    .header {
-      background: #007a5a;
+    .hero {
+      background: linear-gradient(135deg, #005f46, #008b68);
       color: white;
-      padding: 26px;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
+      padding: 28px 24px 120px;
+      border-bottom-left-radius: 34px;
+      border-bottom-right-radius: 34px;
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      line-height: 1.1;
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .sub {
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .shield {
+      width: 46px;
+      height: 52px;
+      border: 4px solid white;
+      border-radius: 16px 16px 22px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 6px;
+      margin-top: 5px;
+    }
+
+    .profile {
+      width: 42px;
+      height: 42px;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .welcome {
+      margin-top: 32px;
+      font-size: 20px;
       opacity: 0.9;
-      margin-top: 6px;
-      font-size: 15px;
     }
 
-    .card {
+    .name {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .policy-card {
       background: white;
       color: black;
-      border-radius: 24px;
-      padding: 20px;
+      margin: -86px 18px 22px;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+    }
+
+    .policy-label {
+      color: #007a5a;
+      font-weight: bold;
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .car-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .car-title {
+      font-size: 31px;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .car-badge {
+      background: #e8f4f0;
+      color: #007a5a;
+      display: inline-block;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .car-emoji {
+      font-size: 76px;
+      line-height: 1;
+    }
+
+    .policy-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
       margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed #d9d9d9;
     }
 
-    .card p {
-      margin: 0 0 12px 0;
+    .meta-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
     }
 
-    .card h2 {
-      margin: 0 0 14px 0;
-      font-size: 24px;
+    .meta-icon {
+      color: #007a5a;
+      font-size: 22px;
+      margin-top: 2px;
+    }
+
+    .meta-label {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .meta-value {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px dashed #d9d9d9;
+    }
+
+    .stat {
+      min-width: 0;
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8f4f0;
+      color: #007a5a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .stat-label {
+      color: #555;
+      font-size: 13px;
+      min-height: 34px;
+    }
+
+    .stat-value {
+      font-size: 21px;
+      font-weight: 900;
+      margin-top: 6px;
+    }
+
+    .stat-note {
+      color: #007a5a;
+      font-size: 12px;
+      margin-top: 6px;
+      line-height: 1.25;
     }
 
     .content {
-      padding: 22px;
-      padding-bottom: 95px;
+      padding: 0 18px;
     }
 
-    .button {
+    .action {
       width: 100%;
       border: none;
-      padding: 18px;
       border-radius: 24px;
-      font-size: 17px;
-      font-weight: bold;
+      padding: 18px;
       margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
       cursor: pointer;
+      font-family: inherit;
+    }
+
+    .action-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .action-title {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .action-sub {
+      font-size: 14px;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    .arrow {
+      margin-left: auto;
+      font-size: 28px;
+      opacity: 0.8;
     }
 
     .voice {
-      background: #007a5a;
+      background: linear-gradient(135deg, #006a4e, #008b68);
       color: white;
+      box-shadow: 0 12px 25px rgba(0,122,90,0.22);
+    }
+
+    .voice .action-icon {
+      background: rgba(255,255,255,0.14);
     }
 
     .chat {
-      background: #f1f1f1;
+      background: #f3f3f3;
       color: black;
+    }
+
+    .chat .action-icon {
+      background: white;
     }
 
     .tiles {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin-top: 18px;
     }
 
     .tile {
-      background: #f1f1f1;
-      padding: 19px;
-      border-radius: 20px;
+      background: #f3f3f3;
+      padding: 20px;
+      border-radius: 24px;
+      min-height: 160px;
+    }
+
+    .tile-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #e8f4f0;
+      color: #007a5a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
     }
 
     .tile-title {
-      font-weight: bold;
-      font-size: 17px;
+      font-size: 18px;
+      font-weight: 900;
       margin-bottom: 8px;
     }
 
     .tile-text {
-      color: #666;
+      color: #555;
       font-size: 14px;
       line-height: 1.35;
     }
 
     .bottom-nav {
-      position: absolute;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
       bottom: 0;
       width: 100%;
-      border-top: 1px solid #ddd;
+      max-width: 430px;
+      border-top: 1px solid #e5e5e5;
+      background: white;
       display: flex;
       justify-content: space-around;
-      padding: 14px 0;
-      background: white;
+      padding: 12px 0 20px;
     }
 
     .nav-item {
       text-align: center;
-      font-size: 13px;
-      color: #777;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .nav-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
     }
 
     .active {
@@ -141,81 +353,143 @@
       font-weight: bold;
     }
 
-    @media (max-width: 430px) {
-      body {
-        padding: 0;
-        align-items: stretch;
-      }
-
-      .phone {
-        width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .header {
-        border-bottom-left-radius: 28px;
-        border-bottom-right-radius: 28px;
-        padding-top: 32px;
-      }
+    @media (max-width: 380px) {
+      .name { font-size: 40px; }
+      .brand { font-size: 23px; }
+      .car-title { font-size: 26px; }
+      .stats { gap: 8px; }
+      .stat-value { font-size: 18px; }
     }
   </style>
 </head>
 
 <body>
+  <main class="app">
 
-  <div class="phone">
+    <section class="hero">
+      <div class="top-row">
+        <div class="logo-wrap">
+          <div class="shield">B</div>
+          <div class="brand">
+            BOOST
+            <span>INSURANCE</span>
+          </div>
+        </div>
 
-    <div class="header">
-      <div class="logo">BOOST INSURANCE</div>
-      <div class="sub">Welcome back Adam</div>
-
-      <div class="card">
-        <p>Your Policy</p>
-        <h2>Ford Fiesta ST</h2>
-        <p>Policy Number: ACR-102938</p>
+        <div class="profile">👤</div>
       </div>
-    </div>
 
-    <div class="content">
+      <div class="welcome">Welcome back,</div>
+      <div class="name">Adam Rathbone</div>
+    </section>
 
-      <button class="button voice">
-        🎤 Speak with AI Agent
+    <section class="policy-card">
+      <div class="policy-label">Your Policy</div>
+
+      <div class="car-row">
+        <div>
+          <h1 class="car-title">Ford Fiesta ST</h1>
+          <div class="car-badge">Comprehensive</div>
+        </div>
+
+        <div class="car-emoji">🚗</div>
+      </div>
+
+      <div class="policy-meta">
+        <div class="meta-item">
+          <div class="meta-icon">📅</div>
+          <div>
+            <div class="meta-label">Policy Expiry</div>
+            <div class="meta-value">26 May 2026</div>
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-icon">🛡️</div>
+          <div>
+            <div class="meta-label">Policy Number</div>
+            <div class="meta-value">ACR-102938</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-icon">£</div>
+          <div class="stat-label">Annual Premium</div>
+          <div class="stat-value">£672.48</div>
+          <div class="stat-note">View breakdown</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">💳</div>
+          <div class="stat-label">Excess</div>
+          <div class="stat-value">£250</div>
+          <div class="stat-note">Voluntary £100</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">📄</div>
+          <div class="stat-label">No Claims Bonus</div>
+          <div class="stat-value">3 Years</div>
+          <div class="stat-note">Protected</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <button class="action voice">
+        <div class="action-icon">🎙️</div>
+        <div>
+          <div class="action-title">Speak with AI Agent</div>
+          <div class="action-sub">Get quick answers using voice</div>
+        </div>
+        <div class="arrow">›</div>
       </button>
 
-      <button class="button chat">
-        💬 Chat with AI Agent
+      <button class="action chat">
+        <div class="action-icon">💬</div>
+        <div>
+          <div class="action-title">Chat with AI Agent</div>
+          <div class="action-sub">Type your questions</div>
+        </div>
+        <div class="arrow">›</div>
       </button>
 
       <div class="tiles">
-
         <div class="tile">
+          <div class="tile-icon">📝</div>
           <div class="tile-title">Make a Claim</div>
-          <div class="tile-text">
-            Start a new motor insurance claim
-          </div>
+          <div class="tile-text">Start a new motor insurance claim</div>
         </div>
 
         <div class="tile">
+          <div class="tile-icon">📁</div>
           <div class="tile-title">View Documents</div>
-          <div class="tile-text">
-            Access policy documents and renewal info
-          </div>
+          <div class="tile-text">Access policy documents and renewal info</div>
         </div>
-
       </div>
+    </section>
 
-    </div>
+    <nav class="bottom-nav">
+      <div class="nav-item active">
+        <div class="nav-icon">🏠</div>
+        Home
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">🛡️</div>
+        Policies
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">📄</div>
+        Claims
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">⚙️</div>
+        Settings
+      </div>
+    </nav>
 
-    <div class="bottom-nav">
-      <div class="nav-item active">Home</div>
-      <div class="nav-item">Policies</div>
-      <div class="nav-item">Claims</div>
-      <div class="nav-item">Settings</div>
-    </div>
-
-  </div>
-
+  </main>
 </body>
 </html>
