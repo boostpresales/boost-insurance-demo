@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boost Insurance</title>
-
   <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
 
   <style>
@@ -23,16 +22,16 @@
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
-      background: #ffffff;
-      overflow-x: hidden;
+      background: white;
       position: relative;
-      padding-bottom: 92px;
+      padding-bottom: 95px;
+      overflow-x: hidden;
     }
 
     .hero {
       background: linear-gradient(135deg, #005f46, #008b68);
       color: white;
-      padding: 28px 24px 120px;
+      padding: 28px 24px 118px;
       border-bottom-left-radius: 34px;
       border-bottom-right-radius: 34px;
     }
@@ -102,7 +101,7 @@
     .policy-card {
       background: white;
       color: black;
-      margin: -86px 18px 22px;
+      margin: -84px 18px 22px;
       border-radius: 28px;
       padding: 24px;
       box-shadow: 0 16px 35px rgba(0,0,0,0.12);
@@ -140,7 +139,7 @@
     }
 
     .car-emoji {
-      font-size: 76px;
+      font-size: 70px;
       line-height: 1;
     }
 
@@ -162,7 +161,6 @@
     .meta-icon {
       color: #007a5a;
       font-size: 22px;
-      margin-top: 2px;
     }
 
     .meta-label {
@@ -186,8 +184,8 @@
     }
 
     .stat-icon {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       background: #e8f4f0;
       color: #007a5a;
       border-radius: 50%;
@@ -195,7 +193,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 12px;
-      font-size: 20px;
+      font-size: 19px;
     }
 
     .stat-label {
@@ -205,7 +203,7 @@
     }
 
     .stat-value {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 900;
       margin-top: 6px;
     }
@@ -235,15 +233,31 @@
       font-family: inherit;
     }
 
+    .voice {
+      background: linear-gradient(135deg, #006a4e, #008b68);
+      color: white;
+      box-shadow: 0 12px 25px rgba(0,122,90,0.22);
+    }
+
+    .chat {
+      background: #f3f3f3;
+      color: black;
+    }
+
     .action-icon {
       width: 52px;
       height: 52px;
       border-radius: 50%;
+      background: rgba(255,255,255,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 26px;
       flex-shrink: 0;
+    }
+
+    .chat .action-icon {
+      background: white;
     }
 
     .action-title {
@@ -261,25 +275,6 @@
       margin-left: auto;
       font-size: 28px;
       opacity: 0.8;
-    }
-
-    .voice {
-      background: linear-gradient(135deg, #006a4e, #008b68);
-      color: white;
-      box-shadow: 0 12px 25px rgba(0,122,90,0.22);
-    }
-
-    .voice .action-icon {
-      background: rgba(255,255,255,0.14);
-    }
-
-    .chat {
-      background: #f3f3f3;
-      color: black;
-    }
-
-    .chat .action-icon {
-      background: white;
     }
 
     .tiles {
@@ -407,197 +402,199 @@
       font-weight: bold;
       font-size: 17px;
     }
+
+    @media (max-width: 380px) {
+      .name { font-size: 40px; }
+      .brand { font-size: 23px; }
+      .car-title { font-size: 26px; }
+      .stat-value { font-size: 18px; }
+    }
   </style>
 </head>
 
 <body>
-
-<main class="app">
-
-<section class="hero">
-  <div class="top-row">
-    <div class="logo-wrap">
-      <div class="shield">B</div>
-      <div class="brand">BOOST<span>INSURANCE</span></div>
-    </div>
-    <div class="profile">👤</div>
-  </div>
-
-  <div class="welcome">Welcome back,</div>
-  <div class="name">Adam Rathbone</div>
-</section>
-
-<section class="policy-card">
-  <div class="policy-label">Your Policy</div>
-
-  <div class="car-row">
-    <div>
-      <h1 class="car-title">Ford Fiesta ST</h1>
-      <div class="car-badge">Comprehensive</div>
-    </div>
-    <div class="car-emoji">🚗</div>
-  </div>
-
-  <div class="policy-meta">
-    <div class="meta-item">
-      <div class="meta-icon">📅</div>
-      <div>
-        <div class="meta-label">Policy Expiry</div>
-        <div class="meta-value">26 May 2026</div>
+  <main class="app">
+    <section class="hero">
+      <div class="top-row">
+        <div class="logo-wrap">
+          <div class="shield">B</div>
+          <div class="brand">BOOST<span>INSURANCE</span></div>
+        </div>
+        <div class="profile">👤</div>
       </div>
-    </div>
 
-    <div class="meta-item">
-      <div class="meta-icon">🛡️</div>
-      <div>
-        <div class="meta-label">Policy Number</div>
-        <div class="meta-value">ACR-102938</div>
+      <div class="welcome">Welcome back,</div>
+      <div class="name">Adam Rathbone</div>
+    </section>
+
+    <section class="policy-card">
+      <div class="policy-label">Your Policy</div>
+
+      <div class="car-row">
+        <div>
+          <h1 class="car-title">Ford Fiesta ST</h1>
+          <div class="car-badge">Comprehensive</div>
+        </div>
+        <div class="car-emoji">🚗</div>
       </div>
+
+      <div class="policy-meta">
+        <div class="meta-item">
+          <div class="meta-icon">📅</div>
+          <div>
+            <div class="meta-label">Policy Expiry</div>
+            <div class="meta-value">26 May 2026</div>
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="meta-icon">🛡️</div>
+          <div>
+            <div class="meta-label">Policy Number</div>
+            <div class="meta-value">ACR-102938</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-icon">£</div>
+          <div class="stat-label">Annual Premium</div>
+          <div class="stat-value">£672.48</div>
+          <div class="stat-note">View breakdown</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">💳</div>
+          <div class="stat-label">Excess</div>
+          <div class="stat-value">£250</div>
+          <div class="stat-note">Voluntary £100</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">📄</div>
+          <div class="stat-label">No Claims Bonus</div>
+          <div class="stat-value">3 Years</div>
+          <div class="stat-note">Protected</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <button class="action voice" onclick="startVoiceCall()">
+        <div class="action-icon">🎙️</div>
+        <div>
+          <div class="action-title">Speak with AI Agent</div>
+          <div class="action-sub">Get quick answers using voice</div>
+        </div>
+        <div class="arrow">›</div>
+      </button>
+
+      <button class="action chat">
+        <div class="action-icon">💬</div>
+        <div>
+          <div class="action-title">Chat with AI Agent</div>
+          <div class="action-sub">Type your questions</div>
+        </div>
+        <div class="arrow">›</div>
+      </button>
+
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-icon">📝</div>
+          <div class="tile-title">Make a Claim</div>
+          <div class="tile-text">Start a new motor insurance claim</div>
+        </div>
+
+        <div class="tile">
+          <div class="tile-icon">📁</div>
+          <div class="tile-title">View Documents</div>
+          <div class="tile-text">Access policy documents and renewal info</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
+      <div class="nav-item"><div class="nav-icon">🛡️</div>Policies</div>
+      <div class="nav-item"><div class="nav-icon">📄</div>Claims</div>
+      <div class="nav-item"><div class="nav-icon">⚙️</div>Settings</div>
+    </nav>
+  </main>
+
+  <div class="call-modal" id="callModal">
+    <div class="call-box">
+      <div class="call-icon">🎙️</div>
+      <div class="call-title">AI Voice Agent</div>
+      <div class="call-status" id="callStatus">Connecting...</div>
+      <button class="end-call" onclick="endVoiceCall()">End Call</button>
     </div>
   </div>
 
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-icon">£</div>
-      <div class="stat-label">Annual Premium</div>
-      <div class="stat-value">£672.48</div>
-      <div class="stat-note">View breakdown</div>
-    </div>
+  <script>
+    const BOOST_VOICE_ENDPOINT = "https://adminpanel-adamtest.boost.ai/api/voice/v1/call";
+    let room = null;
 
-    <div class="stat">
-      <div class="stat-icon">💳</div>
-      <div class="stat-label">Excess</div>
-      <div class="stat-value">£250</div>
-      <div class="stat-note">Voluntary £100</div>
-    </div>
+    async function startVoiceCall() {
+      const modal = document.getElementById("callModal");
+      const status = document.getElementById("callStatus");
 
-    <div class="stat">
-      <div class="stat-icon">📄</div>
-      <div class="stat-label">No Claims Bonus</div>
-      <div class="stat-value">3 Years</div>
-      <div class="stat-note">Protected</div>
-    </div>
-  </div>
-</section>
+      modal.style.display = "flex";
+      status.innerText = "Starting voice session...";
 
-<section class="content">
-  <button class="action voice" onclick="startVoiceCall()">
-    <div class="action-icon">🎙️</div>
-    <div>
-      <div class="action-title">Speak with AI Agent</div>
-      <div class="action-sub">Get quick answers using voice</div>
-    </div>
-    <div class="arrow">›</div>
-  </button>
+      try {
+        const response = await fetch(BOOST_VOICE_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ entrypoint_id: 2 })
+        });
 
-  <button class="action chat">
-    <div class="action-icon">💬</div>
-    <div>
-      <div class="action-title">Chat with AI Agent</div>
-      <div class="action-sub">Type your questions</div>
-    </div>
-    <div class="arrow">›</div>
-  </button>
+        if (!response.ok) {
+          throw new Error("Voice API returned " + response.status);
+        }
 
-  <div class="tiles">
-    <div class="tile">
-      <div class="tile-icon">📝</div>
-      <div class="tile-title">Make a Claim</div>
-      <div class="tile-text">Start a new motor insurance claim</div>
-    </div>
+        const data = await response.json();
 
-    <div class="tile">
-      <div class="tile-icon">📁</div>
-      <div class="tile-title">View Documents</div>
-      <div class="tile-text">Access policy documents and renewal info</div>
-    </div>
-  </div>
-</section>
+        const livekitUrl = data.url || data.livekit_url;
+        const token = data.access_token || data.token || data.accessToken;
 
-<nav class="bottom-nav">
-  <div class="nav-item active"><div class="nav-icon">🏠</div>Home</div>
-  <div class="nav-item"><div class="nav-icon">🛡️</div>Policies</div>
-  <div class="nav-item"><div class="nav-icon">📄</div>Claims</div>
-  <div class="nav-item"><div class="nav-icon">⚙️</div>Settings</div>
-</nav>
+        if (!livekitUrl || !token) {
+          throw new Error("Missing LiveKit details");
+        }
 
-</main>
+        status.innerText = "Connecting to AI agent...";
 
-<div class="call-modal" id="callModal">
-  <div class="call-box">
-    <div class="call-icon">🎙️</div>
-    <div class="call-title">AI Voice Agent</div>
-    <div class="call-status" id="callStatus">Connecting...</div>
-    <button class="end-call" onclick="endVoiceCall()">End Call</button>
-  </div>
-</div>
+        room = new LivekitClient.Room();
 
-<script>
-const BOOST_VOICE_ENDPOINT = "https://adminpanel-adamtest.boost.ai/api/voice/v1/call";
-let room = null;
+        room.on(LivekitClient.RoomEvent.TrackSubscribed, (track) => {
+          if (track.kind === "audio") {
+            const audioElement = track.attach();
+            document.body.appendChild(audioElement);
+          }
+        });
 
-async function startVoiceCall() {
-  const modal = document.getElementById("callModal");
-  const status = document.getElementById("callStatus");
+        room.on(LivekitClient.RoomEvent.Disconnected, () => {
+          modal.style.display = "none";
+        });
 
-  modal.style.display = "flex";
-  status.innerText = "Starting voice session...";
+        await room.connect(livekitUrl, token);
+        await room.localParticipant.setMicrophoneEnabled(true);
 
-  try {
-    const response = await fetch(BOOST_VOICE_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        entrypoint_id: 2
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error("Voice API returned " + response.status);
+        status.innerText = "Connected. You can speak now.";
+      } catch (error) {
+        console.error(error);
+        status.innerText = "Voice connection failed. Check endpoint, entrypoint or CORS.";
+      }
     }
 
-    const data = await response.json();
+    function endVoiceCall() {
+      if (room) {
+        room.disconnect();
+        room = null;
+      }
 
-    console.log("Boost voice response:", data);
-
-    const livekitUrl = data.url;
-    const accessToken = data.access_token;
-
-    if (!livekitUrl || !accessToken) {
-      throw new Error("Missing LiveKit URL or access token");
+      document.getElementById("callModal").style.display = "none";
     }
-
-    status.innerText = "Connecting to AI agent...";
-
-    room = new LivekitClient.Room();
-
-    await room.connect(livekitUrl, accessToken);
-
-    await room.localParticipant.setMicrophoneEnabled(true);
-
-    status.innerText = "Connected. You can speak now.";
-
-    room.on(LivekitClient.RoomEvent.Disconnected, () => {
-      modal.style.display = "none";
-    });
-
-  } catch (error) {
-    console.error("Voice call error:", error);
-    status.innerText = "Voice connection failed. Check endpoint, entrypoint, CORS, or console logs.";
-  }
-}
-
-function endVoiceCall() {
-  if (room) {
-    room.disconnect();
-    room = null;
-  }
-
-  document.getElementById("callModal").style.display = "none";
-}
-</script>
-
+  </script>
 </body>
 </html>
