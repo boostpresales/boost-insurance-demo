@@ -564,16 +564,17 @@
 
         status.innerText = "Connecting to AI agent...";
 
-        room = new LivekitClient.Room();
+const LK = window.LivekitClient || window.LiveKitClient;
+room = new LK.Room();
 
-        room.on(LivekitClient.RoomEvent.TrackSubscribed, (track) => {
+        room.on(LK.RoomEvent.TrackSubscribed, (track) => {
           if (track.kind === "audio") {
             const audioElement = track.attach();
             document.body.appendChild(audioElement);
           }
         });
 
-        room.on(LivekitClient.RoomEvent.Disconnected, () => {
+        room.on(LK.RoomEvent.Disconnected, () => {
           modal.style.display = "none";
         });
 
