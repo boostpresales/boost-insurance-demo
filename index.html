@@ -1,10 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Boost Insurance Demo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boost Insurance</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #dcdcdc;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .phone {
+      width: 390px;
+      height: 844px;
+      background: white;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .header {
+      background: #007a5a;
+      color: white;
+      padding: 30px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .sub {
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      border-radius: 25px;
+      padding: 20px;
+      margin-top: 25px;
+    }
+
+    .card h2 {
+      margin: 0;
+    }
+
+    .content {
+      padding: 25px;
+    }
+
+    .button {
+      width: 100%;
+      border: none;
+      padding: 18px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+
+    .voice {
+      background: #007a5a;
+      color: white;
+    }
+
+    .chat {
+      background: #f1f1f1;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      background: white;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .active {
+      color: #007a5a;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Boost Insurance</h1>
-  <p>Mobile app demo shell.</p>
+
+  <div class="phone">
+
+    <div class="header">
+      <div class="logo">BOOST INSURANCE</div>
+      <div class="sub">Welcome back Adam</div>
+
+      <div class="card">
+        <p>Your Policy</p>
+        <h2>Ford Fiesta ST</h2>
+        <p>Policy Number: ACR-102938</p>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <button class="button voice">
+        🎤 Speak with AI Agent
+      </button>
+
+      <button class="button chat">
+        💬 Chat with AI Agent
+      </button>
+
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item active">Home</div>
+      <div class="nav-item">Policies</div>
+      <div class="nav-item">Claims</div>
+      <div class="nav-item">Settings</div>
+    </div>
+
+  </div>
+
 </body>
 </html>
